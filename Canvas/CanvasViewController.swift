@@ -26,7 +26,7 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
         var finalPoint: CGPoint?
         let translation = recognizer.translation(in: self.view)
         if let view = recognizer.view {
-            view.center = CGPoint(x:view.center.x , y:view.center.y + translation.y)
+            view.center = CGPoint(x:view.center.x , y:view.center.y + translation.y / 10)
         }
         recognizer.setTranslation(CGPoint.zero, in: self.view)
         if recognizer.state == .ended {
@@ -40,7 +40,7 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
             }
 
             UIView.animate(withDuration: 0.35, delay: 0,
-                           usingSpringWithDamping: 0.9, //animating the ending tray motion with a bounce
+                           usingSpringWithDamping: 0.8,
                            initialSpringVelocity: 0.5,
                            options: UIViewAnimationOptions.curveEaseIn,
                            animations: {recognizer.view!.center = finalPoint!},
